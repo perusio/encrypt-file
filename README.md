@@ -12,4 +12,4 @@ utility from the [OpenSSL](http://openssl.org) project.
 ## HOWTO
 
 Usage is detailed in the
-[manual page](https://github.perusio.org/encrypt-file) built with [`ronn`](https://github.com/rtomayko/ronn/).
+[manual page](http://github.perusio.org/encrypt-file) built with [`ronn`](https://github.com/rtomayko/ronn/).
