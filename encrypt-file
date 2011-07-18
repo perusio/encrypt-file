@@ -1,0 +1,136 @@
+#!/bin/bash
+
+### encrypt_file --- A shell script for encrypting/decrypting a file using openssl with DES3.
+
+### Copyright (C) 2011 António P. P. Almeida <appa@perusio.net>
+###
+### Author: António P. P. Almeida <appa@perusio.net>
+###
+### Permission is hereby granted, free of charge, to any person obtaining a
+### copy of this software and associated documentation files (the "Software"),
+### to deal in the Software without restriction, including without limitation
+### the rights to use, copy, modify, merge, publish, distribute, sublicense,
+### and/or sell copies of the Software, and to permit persons to whom the
+### Software is furnished to do so, subject to the following conditions:
+###
+### The above copyright notice and this permission notice shall be included in
+### all copies or substantial portions of the Software.
+###
+### Except as contained in this notice, the name(s) of the above copyright
+### holders shall not be used in advertising or otherwise to promote the sale,
+### use or other dealings in this Software without prior written authorization.
+###
+### THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+### IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+### FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL
+### THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+### LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+### FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+### DEALINGS IN THE SOFTWARE.
+
+SCRIPTNAME=${0##*/}
+
+## Checking the type of action we will perform. Enabling or disabling.
+ACTION=$(echo $SCRIPTNAME | awk '$0 ~ /decrypt/ {print "DECRYPT"} $0 ~ /encrypt/ {print "ENCRYPT"} $0 !~ /(en|de)crypt/ {print "UNKNOWN"}')
+
+
+function print_usage() {
+    echo "Usage: $SCRIPTNAME [ -f password_file ] [-k] <file>"
+}
+
+## Verify the specified action.
+case $ACTION in
+    ENCRYPT)
+        ## Encrypt the file.
+        DECRYPT_FILE="false"
+        ;;
+    DECRYPT)
+        ## Decrypt instead of encrypting.
+        DECRYPT_FILE="true"
+        ;;
+    UNKNOWN)
+        echo "$SCRIPTNAME: Unknown action!"
+        print_usage
+        ;;
+esac
+
+
+## The openssl binary.
+OPENSSL=$(which openssl)
+[ -x $OPENSSL ] || exit 0
+
+
+## Test the number of arguments.
+if [ $# -lt 1 ]; then
+    print_usage
+    exit 1
+fi
+
+
+## Main loop for reading the keyword options.
+while getopts df:k OPT; do
+    case $OPT in
+        f|+f)
+            ## Get the password filename.
+            [ ! -r $OPTARG ] && echo "Cannot read: $OPTARG password file" && exit 3
+            PASSWD_FILE=$OPTARG
+            ;;
+        k|+k)
+            KEEP_ORIGINAL="true"
+            ;;
+        *)
+            print_usage
+            exit 2
+            ;;
+    esac
+done
+shift $(( OPTIND - 1 ))
+OPTIND=1
+
+
+## Encrypt a file. $1: file to encrypt. $2: password file if given.
+function encrypt_des3() {
+    echo "Encrypting $1 with DES3."
+    case $# in
+        1)
+            ## Encrypt without a password file.
+            $OPENSSL des3 -in $1 -out $1.enc && echo "Done."
+            ;;
+        2)
+            ## Encrypt with a password file: $2 argument.
+            $OPENSSL des3 -in $1 -out $1.enc -pass file:$2 && echo "Done."
+            ;;
+    esac
+}
+
+
+## Decrypt a file. $1: file to encrypt. $2: password file if given.
+function decrypt_des3() {
+    echo "Decrypting $1 with DES3."
+    case $# in
+        1)
+            ## Decrypt without a password file.
+            $OPENSSL des3 -d -in $1 -out ${1%%.enc} && echo "Done."
+            ;;
+        2)
+            ## Decrypt with a password file: $2 argument.
+            $OPENSSL des3 -d -in $1 -out ${1%%.enc} -pass file:$2 && echo "Done."
+            ;;
+    esac
+}
+
+
+## Test the file for readability.
+[ ! -r $1 ] &&  echo "Cannot read file $1."
+
+
+## Perform the specified action.: encrypt/decrypt.
+if [ "$DECRYPT_FILE" == "true" ]; then
+    decrypt_des3 $1 $PASSWD_FILE
+else
+    encrypt_des3 $1 $PASSWD_FILE
+fi
+
+
+## Remove the original file only if -k is not given.
+[ "$KEEP_ORIGINAL" == "true" ] || rm $1

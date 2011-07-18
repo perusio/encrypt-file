@@ -1,0 +1,61 @@
+encrypt-file(5) -- encrypt/decrypt a file with DES3 and openssl
+============================================================================
+
+## SYNOPSIS
+
+`encrypt-file` [ -f <password_file> ] [ -k ] <file>...<br>
+`decrypt-file` [ -f <password_file> ] [ -k ] <file>...<br>
+
+
+## DESCRIPTION
+
+**encrypt-file** encrypts a file using the openssl(1) command line
+tool from the [OpenSSL](http://openssl.org) project. 
+
+It uses the Triple DES cypher for encrypting the file with a given
+password <https://secure.wikimedia.org/wikipedia/en/wiki/Triple_DES>.
+
+ * `-f <password file>`: 
+ read the password for encrypting/decrypting from the given file 
+
+ * `-k`: 
+ keep the original file. Usually the file to be encrypted/decrypted is
+ removed upon sucessful encryption/decryption.
+
+If no password file is specified the user is asked to enter one.
+
+**decrypt-file** decrypts a file using the openssl(1) command line
+tool from the [OpenSSL](http://openssl.org) project. 
+
+## EXAMPLES
+
+Encrypt a file requesting for a password:
+    encrypt-file secret_file.txt
+
+Decrypt a file and keep the original requesting the user for a
+password.
+    decrypt-file -k secret_encrypted.enc
+
+Encrypt a file reading the password from `~/.secret-pass`:
+    encrypt-file -f ~/.secret-pass myfile.csv
+    
+## NOTES
+
+For encrypting and compressing the order must **always** be:
+compression **first** and encryption **second**, since the encryption
+process randomizes the input, thus making any latter attempt to
+compress the file futile.
+
+## AUTHOR
+
+Written by Antonio P.P. Almeida <http://perusio.github.org>
+
+## COPYRIGHT
+
+encrypt/decrypt-file is Copyright (C) 2011 Antonio P.P. Almeida under
+the terms of a MIT License <br><http://www.opensource.org/licenses/mit-license.php>
+
+## SEE ALSO
+
+openssl(1), gpg(1) 
+    
