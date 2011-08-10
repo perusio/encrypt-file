@@ -1,7 +1,7 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "ENCRYPT\-FILE" "5" "July 2011" "" "MANUAL"
+.TH "ENCRYPT\-FILE" "5" "August 2011" "" ""
 .
 .SH "NAME"
 \fBencrypt\-file\fR \- encrypt/decrypt a file with DES3 and openssl
@@ -73,17 +73,17 @@ encrypt\-file \-f ~/\.secret\-pass myfile\.csv
 .
 .IP "" 0
 .
-.SH "NOTES"
-For encrypting and compressing the order must \fBalways\fR be: compression \fBfirst\fR and encryption \fBsecond\fR, since the encryption process randomizes the input, thus making any latter attempt to compress the file futile\.
+.SH "COPYRIGHT"
+encrypt/decrypt\-file is Copyright (C) 2011 Antonio P\.P\. Almeida under the terms of a MIT License \fIhttp://www\.opensource\.org/licenses/mit\-license\.php\fR\.
+.
+.SH "SEE ALSO"
+openssl(1), gpg(1)
+.
+.SH "AVAILABILITY"
+The latest version of encrypt\-file is available at the git repository for this project at: \fIhttps://github\.com/perusio/encrypt\-file\fR\.
 .
 .SH "AUTHOR"
 Written by Antonio P\.P\. Almeida \fIhttp://perusio\.github\.org\fR
 .
-.SH "COPYRIGHT"
-encrypt/decrypt\-file is Copyright (C) 2011 Antonio P\.P\. Almeida under the terms of a MIT License
-.
-.br
-\fIhttp://www\.opensource\.org/licenses/mit\-license\.php\fR
-.
-.SH "SEE ALSO"
-openssl(1), gpg(1)
+.SH "NOTES"
+For encrypting and compressing the order must \fBalways\fR be: compression \fBfirst\fR and encryption \fBsecond\fR, since the encryption process randomizes the input, thus making any latter attempt to compress the file futile\.

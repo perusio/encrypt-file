@@ -1,5 +1,5 @@
 encrypt-file(5) -- encrypt/decrypt a file with DES3 and openssl
-============================================================================
+===============================================================
 
 ## SYNOPSIS
 
@@ -38,6 +38,24 @@ password.
 
 Encrypt a file reading the password from `~/.secret-pass`:
     encrypt-file -f ~/.secret-pass myfile.csv
+
+## COPYRIGHT
+
+encrypt/decrypt-file is Copyright (C) 2011 Antonio P.P. Almeida under
+the terms of a MIT License <http://www.opensource.org/licenses/mit-license.php>.
+
+## SEE ALSO
+
+openssl(1), gpg(1) 
+    
+## AVAILABILITY
+
+The latest version of encrypt-file is available at the git repository
+for this project at: [https://github.com/perusio/encrypt-file](https://github.com/perusio/encrypt-file).
+
+## AUTHOR
+
+Written by Antonio P.P. Almeida <http://perusio.github.org> 
     
 ## NOTES
 
@@ -45,17 +63,3 @@ For encrypting and compressing the order must **always** be:
 compression **first** and encryption **second**, since the encryption
 process randomizes the input, thus making any latter attempt to
 compress the file futile.
-
-## AUTHOR
-
-Written by Antonio P.P. Almeida <http://perusio.github.org>
-
-## COPYRIGHT
-
-encrypt/decrypt-file is Copyright (C) 2011 Antonio P.P. Almeida under
-the terms of a MIT License <br><http://www.opensource.org/licenses/mit-license.php>
-
-## SEE ALSO
-
-openssl(1), gpg(1) 
-    

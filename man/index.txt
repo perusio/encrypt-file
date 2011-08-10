@@ -1,0 +1,3 @@
+## Manual pages referenced on this project.
+openssl(1)  http://www.openssl.org/docs/apps/openssl.html
+gpg(1)      http://www.gnupg.org/documentation/manpage.en.html
