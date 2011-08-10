@@ -63,10 +63,11 @@
     <a href="#SYNOPSIS">SYNOPSIS</a>
     <a href="#DESCRIPTION">DESCRIPTION</a>
     <a href="#EXAMPLES">EXAMPLES</a>
-    <a href="#NOTES">NOTES</a>
-    <a href="#AUTHOR">AUTHOR</a>
     <a href="#COPYRIGHT">COPYRIGHT</a>
     <a href="#SEE-ALSO">SEE ALSO</a>
+    <a href="#AVAILABILITY">AVAILABILITY</a>
+    <a href="#AUTHOR">AUTHOR</a>
+    <a href="#NOTES">NOTES</a>
   </div>
 
   <ol class='man-decor man-head man head'>
@@ -87,7 +88,7 @@
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
-<p><strong>encrypt-file</strong> encrypts a file using the <span class="man-ref">openssl<span class="s">(1)</span></span> command line
+<p><strong>encrypt-file</strong> encrypts a file using the <a href="http://www.openssl.org/docs/apps/openssl.html" class="man-ref">openssl<span class="s">(1)</span></a> command line
 tool from the <a href="http://openssl.org">OpenSSL</a> project.</p>
 
 <p>It uses the Triple DES cypher for encrypting the file with a given
@@ -102,7 +103,7 @@ removed upon sucessful encryption/decryption.</p></dd>
 
 <p>If no password file is specified the user is asked to enter one.</p>
 
-<p><strong>decrypt-file</strong> decrypts a file using the <span class="man-ref">openssl<span class="s">(1)</span></span> command line
+<p><strong>decrypt-file</strong> decrypts a file using the <a href="http://www.openssl.org/docs/apps/openssl.html" class="man-ref">openssl<span class="s">(1)</span></a> command line
 tool from the <a href="http://openssl.org">OpenSSL</a> project.</p>
 
 <h2 id="EXAMPLES">EXAMPLES</h2>
@@ -123,6 +124,24 @@ password.</p>
 <pre><code>encrypt-file -f ~/.secret-pass myfile.csv
 </code></pre>
 
+<h2 id="COPYRIGHT">COPYRIGHT</h2>
+
+<p>encrypt/decrypt-file is Copyright (C) 2011 Antonio P.P. Almeida under
+the terms of a MIT License <a href="http://www.opensource.org/licenses/mit-license.php" data-bare-link="true">http://www.opensource.org/licenses/mit-license.php</a>.</p>
+
+<h2 id="SEE-ALSO">SEE ALSO</h2>
+
+<p><a href="http://www.openssl.org/docs/apps/openssl.html" class="man-ref">openssl<span class="s">(1)</span></a>, <a href="http://www.gnupg.org/documentation/manpage.en.html" class="man-ref">gpg<span class="s">(1)</span></a></p>
+
+<h2 id="AVAILABILITY">AVAILABILITY</h2>
+
+<p>The latest version of encrypt-file is available at the git repository
+for this project at: <a href="https://github.com/perusio/encrypt-file" data-bare-link="true">https://github.com/perusio/encrypt-file</a>.</p>
+
+<h2 id="AUTHOR">AUTHOR</h2>
+
+<p>Written by Antonio P.P. Almeida <a href="http://perusio.github.org" data-bare-link="true">http://perusio.github.org</a></p>
+
 <h2 id="NOTES">NOTES</h2>
 
 <p>For encrypting and compressing the order must <strong>always</strong> be:
@@ -130,23 +149,10 @@ compression <strong>first</strong> and encryption <strong>second</strong>, since
 process randomizes the input, thus making any latter attempt to
 compress the file futile.</p>
 
-<h2 id="AUTHOR">AUTHOR</h2>
-
-<p>Written by Antonio P.P. Almeida <a href="http://perusio.github.org" data-bare-link="true">http://perusio.github.org</a></p>
-
-<h2 id="COPYRIGHT">COPYRIGHT</h2>
-
-<p>encrypt/decrypt-file is Copyright (C) 2011 Antonio P.P. Almeida under
-the terms of a MIT License <br /><a href="http://www.opensource.org/licenses/mit-license.php" data-bare-link="true">http://www.opensource.org/licenses/mit-license.php</a></p>
-
-<h2 id="SEE-ALSO">SEE ALSO</h2>
-
-<p><span class="man-ref">openssl<span class="s">(1)</span></span>, <span class="man-ref">gpg<span class="s">(1)</span></span></p>
-
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'></li>
-    <li class='tc'>July 2011</li>
+    <li class='tc'>August 2011</li>
     <li class='tr'>encrypt-file(5)</li>
   </ol>
 
