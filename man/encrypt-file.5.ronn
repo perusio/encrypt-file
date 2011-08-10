@@ -55,7 +55,7 @@ for this project at: [https://github.com/perusio/encrypt-file](https://github.co
 
 ## AUTHOR
 
-Written by Antonio P.P. Almeida <http://perusio.github.org> 
+Written by Antonio P.P. Almeida \<appa@perusio.net\>.
     
 ## NOTES
 
